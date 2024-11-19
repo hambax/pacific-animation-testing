@@ -1,7 +1,7 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import { motion } from 'framer-motion';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   HomeOutlined,
   MessageOutlined,
@@ -9,13 +9,14 @@ import {
   PeopleOutlined,
   BusinessOutlined,
   AssessmentOutlined,
-  SettingsOutlined
+  SettingsOutlined,
 } from '@mui/icons-material';
+import { primitives } from '../theme/primitives';
 
 const NavContainer = styled(motion.nav)`
   width: 52px;
   height: 100vh;
-  background-color: #3D3F43;
+  background-color: ${primitives.colors.neutral[800]};
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -27,6 +28,7 @@ const NavContainer = styled(motion.nav)`
   top: 0;
   transition: width 0.3s ease;
   overflow: hidden;
+  z-index: 1000;
 
   &:hover {
     width: 240px;
@@ -43,35 +45,25 @@ const NavContainer = styled(motion.nav)`
   }
 `;
 
-const NavItem = styled(motion.div)`
-  color: white;
+const NavButton = styled(motion.div)<{ isactive: string }>`
+  color: ${primitives.colors.base.white};
   width: 100%;
   height: 36px;
   display: flex;
   align-items: center;
   cursor: pointer;
   position: relative;
+  border-radius: 8px;
+  margin: 0 4px;
 
-  &:hover .hover-bg {
-    opacity: 1;
+  &:hover {
+    background-color: ${primitives.colors.neutral[900]};
   }
+
+  background-color: ${props => props.isactive === 'true' ? primitives.colors.neutral[900] : 'transparent'};
 `;
 
-const HoverBg = styled('div')`
-  position: absolute;
-  left: 8px; right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
-  background-color: #000000;
-  border-radius: 4px;
-  opacity: 0;
-  transition: all 0.3s ease;
-  z-index: 0;
-`;
-
-const IconWrapper = styled('div')`
+const NavIcon = styled('div')`
   position: relative;
   z-index: 1;
   display: flex;
@@ -82,13 +74,14 @@ const IconWrapper = styled('div')`
   svg {
     width: 24px;
     height: 24px;
+    color: ${primitives.colors.base.white};
   }
 `;
 
-const Label = styled('span')`
+const NavLabel = styled('span')`
   font-family: 'Inter', sans-serif;
   font-size: 16px;
-  color: white;
+  color: ${primitives.colors.base.white};
   margin-left: 8px;
   position: relative;
   z-index: 1;
@@ -98,19 +91,26 @@ const Label = styled('span')`
   white-space: nowrap;
 `;
 
-const Logo = styled('div')`
+const LogoCircle = styled('div')`
   width: 24px;
   height: 24px;
-  background-color: #00D7E0;
+  background-color: ${primitives.colors.brand[400]};
   border-radius: 50%;
   margin: 0 auto 16px;
   margin-left: 14px;
 `;
 
-const ProfileCircle = styled('div')`
+const NavItems = styled('div')`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+`;
+
+const ProfileCircle = styled(motion.div)`
   width: 36px;
   height: 36px;
-  background-color: #8B5CF6;
+  background-color: ${primitives.colors.neutral[900]};
   border-radius: 50%;
   position: absolute;
   left: 8px;
@@ -118,44 +118,62 @@ const ProfileCircle = styled('div')`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: ${primitives.colors.base.white};
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 500;
   z-index: 1;
+  cursor: pointer;
 `;
 
-const menuItems = [
-  { icon: <HomeOutlined />, label: 'Home' },
-  { icon: <MessageOutlined />, label: 'Messages' },
-  { icon: <PaymentOutlined />, label: 'Payroll' },
-  { icon: <PeopleOutlined />, label: 'People' },
-  { icon: <BusinessOutlined />, label: 'Companies' },
-  { icon: <AssessmentOutlined />, label: 'Reports' },
-  { icon: <SettingsOutlined />, label: 'Settings' }
-];
+interface NavItemProps {
+  icon: React.ReactNode;
+  label: string;
+  to: string;
+  isActive: boolean;
+}
+
+const NavItem: React.FC<NavItemProps> = ({ icon, label, to, isActive }) => {
+  const navigate = useNavigate();
+
+  return (
+    <NavButton
+      onClick={() => navigate(to)}
+      isactive={isActive.toString()}
+    >
+      <NavIcon>{icon}</NavIcon>
+      <NavLabel className="nav-label">{label}</NavLabel>
+    </NavButton>
+  );
+};
 
 const LeftNavMenu: React.FC = () => {
+  const location = useLocation();
+  
+  const menuItems = [
+    { icon: <HomeOutlined />, label: 'Home', to: '/' },
+    { icon: <MessageOutlined />, label: 'Messages', to: '/messages' },
+    { icon: <PaymentOutlined />, label: 'Payroll', to: '/payroll' },
+    { icon: <PeopleOutlined />, label: 'People', to: '/people' },
+    { icon: <BusinessOutlined />, label: 'Companies', to: '/companies' },
+    { icon: <AssessmentOutlined />, label: 'Reports', to: '/reports' },
+    { icon: <SettingsOutlined />, label: 'Settings', to: '/settings' }
+  ];
+
   return (
-    <NavContainer
-      initial={{ x: -52 }}
-      animate={{ x: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      <Logo />
-      {menuItems.map((item) => (
-        <NavItem
-          key={item.label}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.1 }}
-        >
-          <HoverBg className="hover-bg" />
-          <IconWrapper>
-            {item.icon}
-            <Label className="nav-label">{item.label}</Label>
-          </IconWrapper>
-        </NavItem>
-      ))}
+    <NavContainer>
+      <LogoCircle />
+      <NavItems>
+        {menuItems.map((item) => (
+          <NavItem
+            key={item.to}
+            icon={item.icon}
+            label={item.label}
+            to={item.to}
+            isActive={location.pathname === item.to}
+          />
+        ))}
+      </NavItems>
       <ProfileCircle>AB</ProfileCircle>
     </NavContainer>
   );
