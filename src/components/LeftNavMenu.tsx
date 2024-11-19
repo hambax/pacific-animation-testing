@@ -68,7 +68,7 @@ const NavIcon = styled('div')`
   z-index: 1;
   display: flex;
   align-items: center;
-  padding: 4px;
+  padding: 0px;
   margin-left: 10px;
 
   svg {
@@ -110,7 +110,8 @@ const NavItems = styled('div')`
 const ProfileCircle = styled(motion.div)`
   width: 36px;
   height: 36px;
-  background-color: ${primitives.colors.neutral[900]};
+  background-color: ${primitives.colors.semantic.purple[400]};
+  color: ${primitives.colors.base.white};
   border-radius: 50%;
   position: absolute;
   left: 8px;
@@ -118,9 +119,6 @@ const ProfileCircle = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${primitives.colors.base.white};
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
   font-weight: 500;
   z-index: 1;
   cursor: pointer;
@@ -140,6 +138,14 @@ const NavItem: React.FC<NavItemProps> = ({ icon, label, to, isActive }) => {
     <NavButton
       onClick={() => navigate(to)}
       isactive={isActive.toString()}
+      whileTap={{ 
+        scale: 0.95,
+        transition: { 
+          type: "spring",
+          stiffness: 400,
+          damping: 15
+        }
+      }}
     >
       <NavIcon>{icon}</NavIcon>
       <NavLabel className="nav-label">{label}</NavLabel>
