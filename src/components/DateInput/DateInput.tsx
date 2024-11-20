@@ -14,6 +14,27 @@ export function DateInput({ label, value, onChange, isRequired = false }: DateIn
   const ref = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState(value || '');
 
+  const formatAsTyping = (input: string): string => {
+    // Remove all non-digits
+    const digitsOnly = input.replace(/\D/g, '');
+    
+    // Add dashes after day and month
+    let formatted = digitsOnly;
+    if (digitsOnly.length >= 2) {
+      formatted = digitsOnly.slice(0, 2) + '-' + digitsOnly.slice(2);
+    }
+    if (digitsOnly.length >= 4) {
+      formatted = formatted.slice(0, 5) + '-' + digitsOnly.slice(4);
+    }
+    
+    // Limit to maximum length (dd-mm-yyyy = 10 characters)
+    if (digitsOnly.length > 8) {
+      formatted = formatted.slice(0, 10);
+    }
+    
+    return formatted;
+  };
+
   const parseInputDate = (input: string): Date | null => {
     // Try different date formats
     const formats = [
@@ -37,7 +58,12 @@ export function DateInput({ label, value, onChange, isRequired = false }: DateIn
         const fullYear = year.length === 2 ? 2000 + parseInt(year) : parseInt(year);
         
         try {
-          return new Date(fullYear, monthNum - 1, parseInt(day));
+          const date = new Date(fullYear, monthNum - 1, parseInt(day));
+          // Validate that the date is valid (e.g., not 31-02-2024)
+          if (date.getMonth() === monthNum - 1) {
+            return date;
+          }
+          return null;
         } catch {
           return null;
         }
@@ -53,18 +79,23 @@ export function DateInput({ label, value, onChange, isRequired = false }: DateIn
     return `${day}-${month}-${year}`;
   };
 
+  const handleInputChange = (value: string) => {
+    const formattedValue = formatAsTyping(value);
+    setInputValue(formattedValue);
+    
+    // Only trigger onChange if we have a complete, valid date
+    const date = parseInputDate(formattedValue);
+    if (date && onChange) {
+      onChange(formattedValue);
+    }
+  };
+
   const { labelProps, inputProps } = useTextField(
     {
       label,
       isRequired,
       value: inputValue,
-      onChange: (value) => {
-        setInputValue(value);
-        const date = parseInputDate(value);
-        if (date && onChange) {
-          onChange(formatDate(date));
-        }
-      },
+      onChange: handleInputChange,
       onBlur: () => {
         const date = parseInputDate(inputValue);
         if (date) {
@@ -86,7 +117,8 @@ export function DateInput({ label, value, onChange, isRequired = false }: DateIn
         {...inputProps}
         ref={ref}
         className="date-field-input"
-        placeholder="DD-MMM-YYYY"
+        placeholder="DD-MM-YYYY"
+        maxLength={10}
       />
     </div>
   );
