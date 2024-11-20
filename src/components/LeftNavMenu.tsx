@@ -10,6 +10,7 @@ import {
   BusinessOutlined,
   AssessmentOutlined,
   SettingsOutlined,
+  CalendarMonth
 } from '@mui/icons-material';
 import { primitives } from '../theme/primitives';
 
@@ -163,7 +164,8 @@ const LeftNavMenu: React.FC = () => {
     { icon: <PeopleOutlined />, label: 'People', to: '/people' },
     { icon: <BusinessOutlined />, label: 'Companies', to: '/companies' },
     { icon: <AssessmentOutlined />, label: 'Reports', to: '/reports' },
-    { icon: <SettingsOutlined />, label: 'Settings', to: '/settings' }
+    { icon: <SettingsOutlined />, label: 'Settings', to: '/settings' },
+    { icon: <CalendarMonth />, label: 'Date Demo', to: '/date-input-demo' }
   ];
 
   return (

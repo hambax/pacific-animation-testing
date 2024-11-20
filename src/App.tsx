@@ -11,6 +11,7 @@ import People from './pages/People';
 import Companies from './pages/Companies';
 import Reports from './pages/Reports';
 import Settings from './pages/Settings';
+import DateInputDemo from './pages/DateInputDemo';
 
 const AppContainer = styled('div')`
   min-height: 100vh;
@@ -42,6 +43,7 @@ const App = () => {
               <Route path="/companies" element={<Companies />} />
               <Route path="/reports" element={<Reports />} />
               <Route path="/settings" element={<Settings />} />
+              <Route path="/date-input-demo" element={<DateInputDemo />} />
             </Routes>
           </MainContent>
         </AppContainer>

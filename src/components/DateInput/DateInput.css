@@ -1,0 +1,31 @@
+.date-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.date-field label {
+  font-size: 14px;
+  color: #666;
+}
+
+.date-field-input {
+  display: inline-flex;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background: white;
+}
+
+.date-field-input:focus-within {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+.date-field-input [data-selected] {
+  background: #007bff;
+  color: white;
+  border-radius: 2px;
+}
