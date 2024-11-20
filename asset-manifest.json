@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/pacific-animation-testing/static/css/main.20d9280a.css",
-    "main.js": "/pacific-animation-testing/static/js/main.ee3b2d60.js",
+    "main.js": "/pacific-animation-testing/static/js/main.3802f8a6.js",
     "static/js/453.34d4e44b.chunk.js": "/pacific-animation-testing/static/js/453.34d4e44b.chunk.js",
     "index.html": "/pacific-animation-testing/index.html",
     "main.20d9280a.css.map": "/pacific-animation-testing/static/css/main.20d9280a.css.map",
-    "main.ee3b2d60.js.map": "/pacific-animation-testing/static/js/main.ee3b2d60.js.map",
+    "main.3802f8a6.js.map": "/pacific-animation-testing/static/js/main.3802f8a6.js.map",
     "453.34d4e44b.chunk.js.map": "/pacific-animation-testing/static/js/453.34d4e44b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.20d9280a.css",
-    "static/js/main.ee3b2d60.js"
+    "static/js/main.3802f8a6.js"
   ]
 }
