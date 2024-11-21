@@ -6,10 +6,12 @@ interface CardGridProps {
 }
 
 const GridContainer = styled('div')`
-  display: flex;
-  flex-wrap: wrap;
-  margin: -8px; // Compensate for card margins
-  width: calc(100% + 16px); // Compensate for negative margins
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 `;
 
 const CardGrid: React.FC<CardGridProps> = ({ children }) => {

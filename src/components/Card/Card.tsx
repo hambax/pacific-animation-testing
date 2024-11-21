@@ -14,22 +14,15 @@ const CardContainer = styled(motion.div)`
   border: 1px solid ${props => props.theme.palette.mode === 'light'
     ? props.theme.tokens.border.default
     : primitives.colors.neutral[300]};
-    border: 1px solid ${props => props.theme.palette.mode === 'dark'
+  border: 1px solid ${props => props.theme.palette.mode === 'dark'
     ? props.theme.tokens.border.default
     : primitives.colors.neutral[400]};
   border-radius: 8px;
   padding: ${props => props.theme.spacing(3)};
-  margin: 8px;
-  width: calc(33.333% - 16px);
   box-sizing: border-box;
-
-  @media (max-width: 1200px) {
-    width: calc(50% - 16px);
-  }
-
-  @media (max-width: 768px) {
-    width: calc(100% - 16px);
-  }
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   h3 {
     margin-top: 0;
@@ -40,6 +33,7 @@ const CardContainer = styled(motion.div)`
   p {
     margin: 0;
     color: ${props => props.theme.palette.text.primary};
+    flex: 1;
   }
 `;
 

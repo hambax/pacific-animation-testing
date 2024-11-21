@@ -9,6 +9,8 @@ const PageContainer = styled('div')`
   height: 100%;
   width: 100%;
   box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: hidden;
 `;
 
 const PageTitle = styled(Typography)`
@@ -19,32 +21,39 @@ const PageTitle = styled(Typography)`
   letter-spacing: -0.02em;
 `;
 
+const GridWrapper = styled('div')`
+  width: 100%;
+  max-width: 100%;
+`;
+
 const Home = () => {
   return (
     <PageContainer>
       <PageTitle variant="h1">
         Home
       </PageTitle>
-      <CardGrid>
-        <Card>
-          <Typography variant="h3" component="h2" gutterBottom>
-            Recent Activity
-          </Typography>
-          <p>View your latest activities</p>
-        </Card>
-        <Card>
-          <Typography variant="h3" component="h2" gutterBottom>
-            Quick Actions
-          </Typography>
-          <p>Access frequently used features</p>
-        </Card>
-        <Card>
-          <Typography variant="h3" component="h2" gutterBottom>
-            Notifications
-          </Typography>
-          <p>View important updates</p>
-        </Card>
-      </CardGrid>
+      <GridWrapper>
+        <CardGrid>
+          <Card>
+            <Typography variant="h3" component="h2" gutterBottom>
+              Recent Activity
+            </Typography>
+            <p>View your latest activities</p>
+          </Card>
+          <Card>
+            <Typography variant="h3" component="h2" gutterBottom>
+              Quick Actions
+            </Typography>
+            <p>Access frequently used features</p>
+          </Card>
+          <Card>
+            <Typography variant="h3" component="h2" gutterBottom>
+              Notifications
+            </Typography>
+            <p>View important updates</p>
+          </Card>
+        </CardGrid>
+      </GridWrapper>
     </PageContainer>
   );
 };
