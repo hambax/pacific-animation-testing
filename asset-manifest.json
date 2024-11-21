@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/pacific-animation-testing/static/css/main.31bab4a0.css",
-    "main.js": "/pacific-animation-testing/static/js/main.c10ae326.js",
-    "static/js/453.34d4e44b.chunk.js": "/pacific-animation-testing/static/js/453.34d4e44b.chunk.js",
-    "index.html": "/pacific-animation-testing/index.html",
-    "main.31bab4a0.css.map": "/pacific-animation-testing/static/css/main.31bab4a0.css.map",
-    "main.c10ae326.js.map": "/pacific-animation-testing/static/js/main.c10ae326.js.map",
-    "453.34d4e44b.chunk.js.map": "/pacific-animation-testing/static/js/453.34d4e44b.chunk.js.map"
+    "main.css": "/hambax/pacific-animation-testing/static/css/main.31bab4a0.css",
+    "main.js": "/hambax/pacific-animation-testing/static/js/main.6f73acd0.js",
+    "static/js/453.34d4e44b.chunk.js": "/hambax/pacific-animation-testing/static/js/453.34d4e44b.chunk.js",
+    "index.html": "/hambax/pacific-animation-testing/index.html",
+    "main.31bab4a0.css.map": "/hambax/pacific-animation-testing/static/css/main.31bab4a0.css.map",
+    "main.6f73acd0.js.map": "/hambax/pacific-animation-testing/static/js/main.6f73acd0.js.map",
+    "453.34d4e44b.chunk.js.map": "/hambax/pacific-animation-testing/static/js/453.34d4e44b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.31bab4a0.css",
-    "static/js/main.c10ae326.js"
+    "static/js/main.6f73acd0.js"
   ]
 }
