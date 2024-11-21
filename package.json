@@ -33,7 +33,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "deploy:github": "gh-pages -d build -r https://github.com/hambax/pacific-animation-testing.git",
+    "deploy:github": "gh-pages -d build -r git@github.com:hambax/pacific-animation-testing.git",
     "deploy:github:branch": "gh-pages -d build -r https://github.com/hambax/pacific-animation-testing.git -b main"
   },
   "eslintConfig": {
